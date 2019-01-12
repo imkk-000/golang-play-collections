@@ -1,6 +1,7 @@
 package queue
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -46,6 +47,24 @@ func Test_Dequeue_Should_Be_String_Hello(t *testing.T) {
 		t.Errorf("expect %v but it got %v", expectedDequeueValue, actualDequeueValue)
 	}
 	if !reflect.DeepEqual(expectedQueue, actualQueue) {
+		t.Errorf("expect %v but it got %v", expectedQueue, actualQueue)
+	}
+}
+
+func Test_Dequeue_Empty_Queue_Should_Be_Nil(t *testing.T) {
+	expectedDequeueValue := interface{}(nil)
+	expectedQueue := Queue{
+		values: []interface{}{},
+	}
+
+	queue := Queue{}
+	actualDequeueValue := queue.Dequeue()
+	actualQueue := queue
+
+	if expectedDequeueValue != actualDequeueValue {
+		t.Errorf("expect %v but it got %v", expectedDequeueValue, actualDequeueValue)
+	}
+	if fmt.Sprint(expectedQueue) != fmt.Sprint(actualQueue) {
 		t.Errorf("expect %v but it got %v", expectedQueue, actualQueue)
 	}
 }

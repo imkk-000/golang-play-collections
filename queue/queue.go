@@ -13,6 +13,10 @@ func (queue *Queue) Enqueue(value interface{}) {
 }
 
 func (queue *Queue) Dequeue() interface{} {
+	if len(queue.values) == 0 {
+		return nil
+	}
+
 	newQueue := queue.values[1:]
 	dequeueValue := queue.values[0]
 	queue.values = nil
