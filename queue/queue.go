@@ -13,7 +13,9 @@ func (queue *Queue) Enqueue(value interface{}) {
 }
 
 func (queue *Queue) Dequeue() interface{} {
+	newQueue := queue.values[1:]
 	dequeueValue := queue.values[0]
-	queue.values = queue.values[1:]
+	queue.values = nil
+	queue.values = newQueue
 	return dequeueValue
 }
